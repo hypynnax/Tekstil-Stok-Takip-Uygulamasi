@@ -12,7 +12,16 @@ const stores = [
     { id: 8, name: 'Mağaza 8', description: 'Mağaza 8 Açıklaması', image: require('../components/store1.jpg') },
     { id: 9, name: 'Mağaza 9', description: 'Mağaza 9 Açıklaması', image: require('../components/store1.jpg') },
     { id: 10, name: 'Mağaza 10', description: 'Mağaza 10 Açıklaması', image: require('../components/store1.jpg') },
-
+    { id: 11, name: 'Mağaza 11', description: 'Mağaza 11 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 12, name: 'Mağaza 12', description: 'Mağaza 12 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 13, name: 'Mağaza 13', description: 'Mağaza 13 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 14, name: 'Mağaza 14', description: 'Mağaza 14 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 15, name: 'Mağaza 15', description: 'Mağaza 15 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 16, name: 'Mağaza 16', description: 'Mağaza 16 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 17, name: 'Mağaza 17', description: 'Mağaza 17 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 18, name: 'Mağaza 18', description: 'Mağaza 18 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 19, name: 'Mağaza 19', description: 'Mağaza 19 Açıklaması', image: require('../components/store1.jpg') },
+    { id: 20, name: 'Mağaza 20', description: 'Mağaza 20 Açıklaması', image: require('../components/store1.jpg') },
 ];
 
 const HomeScreen = () => {
