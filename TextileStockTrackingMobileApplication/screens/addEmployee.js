@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
+
 const EmployeeAddScreen = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -9,9 +10,13 @@ const EmployeeAddScreen = () => {
   const [email, setEmail] = useState('');
 
   const handleAddMember = () => {
-    // Burada üye ekleme işlemi gerçekleştirilir
-    // Örneğin, API çağrısı yapılabilir veya yerel depolama kullanılabilir
-    console.log('Üye eklendi:', { firstName, lastName, password, phone, email });
+    const userData = {
+      firstName: firstName,
+      lastName: lastName,
+      password: password,
+      phone: phone,
+      email: email
+    };
   };
 
   return (

@@ -1,5 +1,4 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -8,13 +7,21 @@ import HomeScreen from "./screens/home";
 import EmployeeScreen from "./screens/employee";
 import ProductsScreen from "./screens/products";
 
-const Tab = createBottomTabNavigator();
+const Stack = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Stack.Navigator
         screenOptions={({ route }) => ({
+          tabBarActiveTintColor: "tomato",
+          tabBarInactiveTintColor: "gray",
+          tabBarStyle: [
+            {
+              display: "flex",
+            },
+            null,
+          ],
           tabBarIcon: ({ color, size }) => {
             let icon;
 
@@ -39,33 +46,11 @@ export default function App() {
             return icon;
           },
         })}
-        tabBarOptions={{
-          tabBarActiveTintColor: "tomato",
-          tabBarInactiveTintColor: "gray",
-          tabBarStyle: [
-            {
-              display: "flex",
-            },
-            null,
-          ],
-        }}
       >
-        <Tab.Screen name="Employee" component={EmployeeScreen} />
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Products" component={ProductsScreen} />
-      </Tab.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Employee" component={EmployeeScreen} />
+        <Stack.Screen name="Products" component={ProductsScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 20,
-    marginBottom: 10,
-  },
-});

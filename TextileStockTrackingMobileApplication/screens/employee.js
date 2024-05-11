@@ -1,58 +1,45 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faList, faPlus, faEdit } from "@fortawesome/free-solid-svg-icons";
 import EmployeeListScreen from "./employeeList";
 import EmployeeAddScreen from "./addEmployee";
 import EmployeeUpdateScreen from "./updateEmployee";
 
+const TabEmployee = createBottomTabNavigator();
+
 const EmployeeScreen = () => {
-  const ListPage = () => {};
-
-  const AddPage = () => {};
-
-  const EditPage = () => {};
-
   return (
-    <View style={styles.container}>
-      <View style={styles.navbar}>
-        <TouchableOpacity onPress={ListPage} style={styles.navItem}>
-          <FontAwesomeIcon icon={faList} size={24} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={AddPage} style={styles.navItem}>
-          <FontAwesomeIcon icon={faPlus} size={24} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={EditPage} style={styles.navItem}>
-          <FontAwesomeIcon icon={faEdit} size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-    </View>
+    <TabEmployee.Navigator
+      screenOptions={({ route }) => ({
+        tabBarActiveTintColor: "tomato",
+        tabBarInactiveTintColor: "gray",
+        tabBarStyle: [
+          {
+            display: "flex",
+          },
+          null,
+        ],
+        tabBarIcon: ({ color, size }) => {
+          let icon;
+
+          if (route.name === "List") {
+            icon = <FontAwesomeIcon icon={faList} size={size} color={color} />;
+          } else if (route.name === "Add") {
+            icon = <FontAwesomeIcon icon={faPlus} size={size} color={color} />;
+          } else if (route.name === "Edit") {
+            icon = <FontAwesomeIcon icon={faEdit} size={size} color={color} />;
+          }
+
+          return icon;
+        },
+      })}
+    >
+      <TabEmployee.Screen name="List" component={EmployeeListScreen} />
+      <TabEmployee.Screen name="Add" component={EmployeeAddScreen} />
+      <TabEmployee.Screen name="Edit" component={EmployeeUpdateScreen} />
+    </TabEmployee.Navigator>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    borderTopWidth: 1,
-    borderTopColor: "#ccc",
-  },
-  navbar: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    height: 50,
-    backgroundColor: "#fff",
-    borderTopWidth: 1,
-    borderTopColor: "#ccc",
-  },
-  navItem: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 
 export default EmployeeScreen;
