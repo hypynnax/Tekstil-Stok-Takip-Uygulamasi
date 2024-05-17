@@ -23,11 +23,11 @@ const EmployeeScreen = () => {
         tabBarIcon: ({ color, size }) => {
           let icon;
 
-          if (route.name === "List") {
+          if (route.name === "Employee List") {
             icon = <FontAwesomeIcon icon={faList} size={size} color={color} />;
-          } else if (route.name === "Add") {
+          } else if (route.name === "Employee Add") {
             icon = <FontAwesomeIcon icon={faPlus} size={size} color={color} />;
-          } else if (route.name === "Edit") {
+          } else if (route.name === "Employee Edit") {
             icon = <FontAwesomeIcon icon={faEdit} size={size} color={color} />;
           }
 
@@ -35,9 +35,9 @@ const EmployeeScreen = () => {
         },
       })}
     >
-      <TabEmployee.Screen name="List" component={EmployeeListScreen} />
-      <TabEmployee.Screen name="Add" component={EmployeeAddScreen} />
-      <TabEmployee.Screen name="Edit" component={EmployeeUpdateScreen} />
+      <TabEmployee.Screen name="Employee List" component={EmployeeListScreen} />
+      <TabEmployee.Screen name="Employee Add" component={EmployeeAddScreen} />
+      <TabEmployee.Screen name="Employee Edit" component={EmployeeUpdateScreen} />
     </TabEmployee.Navigator>
   );
 };

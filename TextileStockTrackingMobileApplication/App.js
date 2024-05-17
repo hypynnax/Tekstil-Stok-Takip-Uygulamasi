@@ -1,55 +1,24 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faHome, faUser, faShoppingCart } from "./icons";
-import HomeScreen from "./screens/home";
-import EmployeeScreen from "./screens/employee";
-import ProductsScreen from "./screens/products";
+import { createStackNavigator } from "@react-navigation/stack";
+import login from "./src/screens/login";
+import register from "./src/screens/register";
+import sendMail from "./src/screens/sendMail";
+import passwordReset from "./src/screens/passwordReset";
+import main from "./src/screens/mainPage";
 
-const Stack = createBottomTabNavigator();
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={({ route }) => ({
-          tabBarActiveTintColor: "tomato",
-          tabBarInactiveTintColor: "gray",
-          tabBarStyle: [
-            {
-              display: "flex",
-            },
-            null,
-          ],
-          tabBarIcon: ({ color, size }) => {
-            let icon;
-
-            if (route.name === "Home") {
-              icon = (
-                <FontAwesomeIcon icon={faHome} size={size} color={color} />
-              );
-            } else if (route.name === "Employee") {
-              icon = (
-                <FontAwesomeIcon icon={faUser} size={size} color={color} />
-              );
-            } else if (route.name === "Products") {
-              icon = (
-                <FontAwesomeIcon
-                  icon={faShoppingCart}
-                  size={size}
-                  color={color}
-                />
-              );
-            }
-
-            return icon;
-          },
-        })}
-      >
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Employee" component={EmployeeScreen} />
-        <Stack.Screen name="Products" component={ProductsScreen} />
+        screenOptions={{ tabBarVisible: false }}>
+        <Stack.Screen name="Login" component={login} options={{ headerShown: false }} />
+        <Stack.Screen name="Register" component={register} options={{ headerShown: false }} />
+        <Stack.Screen name="Send Mail" component={sendMail} options={{ headerShown: false }} />
+        <Stack.Screen name="Password Reset" component={passwordReset} options={{ headerShown: false }} />
+        <Stack.Screen name="Main" component={main} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

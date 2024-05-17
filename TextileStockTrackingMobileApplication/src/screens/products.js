@@ -23,11 +23,11 @@ const ProductsScreen = () => {
         tabBarIcon: ({ color, size }) => {
           let icon;
 
-          if (route.name === "List") {
+          if (route.name === "Products List") {
             icon = <FontAwesomeIcon icon={faList} size={size} color={color} />;
-          } else if (route.name === "Add") {
+          } else if (route.name === "Products Add") {
             icon = <FontAwesomeIcon icon={faPlus} size={size} color={color} />;
-          } else if (route.name === "Edit") {
+          } else if (route.name === "Products Edit") {
             icon = <FontAwesomeIcon icon={faEdit} size={size} color={color} />;
           }
 
@@ -35,9 +35,9 @@ const ProductsScreen = () => {
         },
       })}
     >
-      <TabProduct.Screen name="List" component={ProductsListScreen} />
-      <TabProduct.Screen name="Add" component={ProductsAddScreen} />
-      <TabProduct.Screen name="Edit" component={ProductsUpdateScreen} />
+      <TabProduct.Screen name="Products List" component={ProductsListScreen} />
+      <TabProduct.Screen name="Products Add" component={ProductsAddScreen} />
+      <TabProduct.Screen name="Products Edit" component={ProductsUpdateScreen} />
     </TabProduct.Navigator>
   );
 };

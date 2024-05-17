@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import auth from '@react-native-firebase/auth'
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
@@ -9,14 +10,19 @@ const RegisterScreen = () => {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
 
-  const handleRegister = () => {
-    // Burada kayıt işlemleri gerçekleştirilir, örneğin bir API çağrısı yapılabilir.
-    console.log('First Name:', firstName);
-    console.log('Last Name:', lastName);
-    console.log('Password:', password);
-    console.log('Phone Number:', phoneNumber);
-    console.log('Email:', email);
-    console.log('Address:', address);
+  const handleRegister = async () => {
+    if (email && password) {
+      try {
+        const response = await auth().createUserWithEmailAndPassword(
+          email,
+          password
+        );
+        navigation.navigate("Login")
+      } catch (error) {
+        Alert.alert("HATA", "Beklenmedik bir hata ile karşılaşıldı kayıt işlemi başarısız lütfen tekrar deneyin.")
+        console.log(error)
+      }
+    }
   };
 
   return (

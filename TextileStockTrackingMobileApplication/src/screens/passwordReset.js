@@ -2,42 +2,40 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 
 const PasswordResetScreen = () => {
-  const [currentPassword, setCurrentPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleResetPassword = () => {
-    // Burada şifre yenileme işlemi gerçekleştirilir
-    // Örneğin, API çağrısı yapılabilir veya yerel depolama kullanılabilir
     console.log('Şifre yenilendi:', { currentPassword, newPassword, confirmPassword });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Şifre Yenileme</Text>
+      <Text style={styles.title}>Password Reset</Text>
       <TextInput
         style={styles.input}
-        placeholder="Mevcut Şifre"
+        placeholder="Username"
         secureTextEntry={true}
-        value={currentPassword}
-        onChangeText={setCurrentPassword}
+        value={username}
+        onChangeText={setUsername}
       />
       <TextInput
         style={styles.input}
-        placeholder="Yeni Şifre"
+        placeholder="New Password"
         secureTextEntry={true}
         value={newPassword}
         onChangeText={setNewPassword}
       />
       <TextInput
         style={styles.input}
-        placeholder="Yeni Şifreyi Onayla"
+        placeholder="Confirm New Password"
         secureTextEntry={true}
         value={confirmPassword}
         onChangeText={setConfirmPassword}
       />
       <TouchableOpacity style={styles.resetButton} onPress={handleResetPassword}>
-        <Text style={styles.buttonText}>Yenile</Text>
+        <Text style={styles.buttonText}>Reset Password</Text>
       </TouchableOpacity>
     </View>
   );
