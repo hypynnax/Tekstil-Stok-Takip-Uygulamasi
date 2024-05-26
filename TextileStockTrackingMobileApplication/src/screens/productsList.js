@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -34,12 +35,22 @@ const ProductListScreen = () => {
     navigation.navigate('ProductUpdateScreen', { product, id });
   };
 
+=======
+import React from "react";
+import { ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+const ProductsListScreen = () => {
+>>>>>>> origin/master
   return (
     <ScrollView>
       <View style={styles.container}>
         <View style={styles.tableHeader}>
           <Text style={styles.columnHeader}>ID</Text>
           <Text style={styles.columnHeader}>Name</Text>
+<<<<<<< HEAD
           <Text style={styles.columnHeader}>Data</Text>
           <Text style={styles.columnHeader}>Piece</Text>
           <Text style={styles.columnHeader}>Actions</Text>
@@ -60,6 +71,22 @@ const ProductListScreen = () => {
             </View>
           </View>
         ))}
+=======
+          <Text style={styles.columnHeader}>Date</Text>
+          <Text style={styles.columnHeader}>Piece</Text>
+          <Text style={styles.columnHeader}>Actions</Text>
+        </View>
+        <View style={styles.tableRow}>
+          <Text style={styles.columnData}>1</Text>
+          <Text style={styles.columnData}>T-shirt</Text>
+          <Text style={styles.columnData}>18/01/2023</Text>
+          <Text style={styles.columnData}>2000</Text>
+          <TouchableOpacity style={styles.deleteButton}>
+            <FontAwesomeIcon icon={faTrash} size={20} color="#fff" />
+          </TouchableOpacity>
+        </View>
+        {/* Diğer ürünlerin kayıtları buraya eklenir */}
+>>>>>>> origin/master
       </View>
     </ScrollView>
   );
@@ -74,6 +101,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
+<<<<<<< HEAD
+=======
+    width:400,
+>>>>>>> origin/master
   },
   columnHeader: {
     fontWeight: "bold",
@@ -86,10 +117,15 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     backgroundColor: "#f0f0f0",
     borderRadius: 5,
+<<<<<<< HEAD
+=======
+    width:340,
+>>>>>>> origin/master
   },
   columnData: {
     flex: 1,
   },
+<<<<<<< HEAD
   actionButtons: {
     flexDirection: "row",
   },
@@ -99,6 +135,8 @@ const styles = StyleSheet.create({
     padding: 5,
     marginRight: 5,
   },
+=======
+>>>>>>> origin/master
   deleteButton: {
     backgroundColor: "red",
     borderRadius: 5,
@@ -106,4 +144,9 @@ const styles = StyleSheet.create({
   },
 });
 
+<<<<<<< HEAD
 export default ProductListScreen;
+=======
+
+export default ProductsListScreen;
+>>>>>>> origin/master

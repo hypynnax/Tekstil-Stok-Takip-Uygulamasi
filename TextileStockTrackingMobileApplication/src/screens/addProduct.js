@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+<<<<<<< HEAD
 import { database } from '../../firebase/firebase';
 
 const ProductsAddScreen = () => {
@@ -25,6 +26,20 @@ const ProductsAddScreen = () => {
       .catch((error) => {
         setShowMessage('Error adding product: ', error);
       });
+=======
+
+const ProductsAddScreen = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+
+  const handleAddMember = () => {
+    // Burada üye ekleme işlemi gerçekleştirilir
+    // Örneğin, API çağrısı yapılabilir veya yerel depolama kullanılabilir
+    console.log('Üye eklendi:', { firstName, lastName, password, phone, email });
+>>>>>>> origin/master
   };
 
   return (
@@ -66,11 +81,14 @@ const ProductsAddScreen = () => {
       <TouchableOpacity style={styles.addButton} onPress={handleAddMember}>
         <Text style={styles.buttonText}>Ekle</Text>
       </TouchableOpacity>
+<<<<<<< HEAD
       {showMessage && (
         <View style={styles.alertContainer}>
           <Text style={styles.alertText}>{error}</Text>
         </View>
       )}
+=======
+>>>>>>> origin/master
     </View>
   );
 };
@@ -108,6 +126,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
+<<<<<<< HEAD
   alertContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -121,6 +140,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: 'red',
   },
+=======
+>>>>>>> origin/master
 });
 
 export default ProductsAddScreen;

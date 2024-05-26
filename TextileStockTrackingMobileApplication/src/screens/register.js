@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { signIn } from '../../loginProcess'
+=======
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+
+>>>>>>> origin/master
 
 const RegisterScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState('');
@@ -9,6 +14,7 @@ const RegisterScreen = ({ navigation }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
+<<<<<<< HEAD
   const [showErrorMessage, setShowErrorMessage] = React.useState('');
 
   const handleRegister = () => {
@@ -34,6 +40,11 @@ const RegisterScreen = ({ navigation }) => {
         setShowErrorMessage('That email address is invalid!');
       }
     }
+=======
+
+  const handleRegister = () => {
+    
+>>>>>>> origin/master
   };
 
   return (
@@ -81,11 +92,14 @@ const RegisterScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
+<<<<<<< HEAD
       {showErrorMessage && (
         <View style={styles.alertContainer}>
           <Text style={styles.alertText}>{showErrorMessage}</Text>
         </View>
       )}
+=======
+>>>>>>> origin/master
     </View>
   );
 };

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "expo": {
     "name": "TextileStockTrackingMobileApplication",
     "slug": "TextileStockTrackingMobileApplication",
@@ -27,4 +28,8 @@
       "favicon": "./assets/favicon.png"
     }
   }
+=======
+  "name": "TextileStockTrackingMobileApplication",
+  "displayName": "TextileStockTrackingMobileApplication"
+>>>>>>> origin/master
 }

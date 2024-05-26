@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+<<<<<<< HEAD
 import { auth } from '../../firebase/firebase';
 
 const PasswordResetScreen = () => {
@@ -24,10 +25,21 @@ const PasswordResetScreen = () => {
     }).catch((error) => {
       console.error('Error reauthenticating:', error);
     });
+=======
+
+const PasswordResetScreen = () => {
+  const [username, setUsername] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const handleResetPassword = () => {
+    console.log('Şifre yenilendi:', { currentPassword, newPassword, confirmPassword });
+>>>>>>> origin/master
   };
 
   return (
     <View style={styles.container}>
+<<<<<<< HEAD
       <Text style={styles.title}>Şifre Değiştir</Text>
       <TextInput
         style={styles.input}
@@ -39,12 +51,37 @@ const PasswordResetScreen = () => {
       <TextInput
         style={styles.input}
         placeholder="Yeni Şifre"
+=======
+      <Text style={styles.title}>Password Reset</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        secureTextEntry={true}
+        value={username}
+        onChangeText={setUsername}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="New Password"
+>>>>>>> origin/master
         secureTextEntry={true}
         value={newPassword}
         onChangeText={setNewPassword}
       />
+<<<<<<< HEAD
       <TouchableOpacity style={styles.changeButton} onPress={handleChangePassword}>
         <Text style={styles.buttonText}>Şifreyi Değiştir</Text>
+=======
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm New Password"
+        secureTextEntry={true}
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+      />
+      <TouchableOpacity style={styles.resetButton} onPress={handleResetPassword}>
+        <Text style={styles.buttonText}>Reset Password</Text>
+>>>>>>> origin/master
       </TouchableOpacity>
     </View>
   );
@@ -71,7 +108,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 10,
   },
+<<<<<<< HEAD
   changeButton: {
+=======
+  resetButton: {
+>>>>>>> origin/master
     backgroundColor: 'tomato',
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -86,4 +127,7 @@ const styles = StyleSheet.create({
 });
 
 export default PasswordResetScreen;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
