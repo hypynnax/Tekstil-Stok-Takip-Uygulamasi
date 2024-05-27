@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-<<<<<<< HEAD
 import { database } from "../../firebase/firebase";
 
 const ProductUpdateScreen = ({ route, navigation }) => {
@@ -25,27 +24,10 @@ const ProductUpdateScreen = ({ route, navigation }) => {
       .catch((error) => {
         console.error("Error updating product: ", error);
       });
-=======
-
-const ProductsUpdateScreen = ({ route }) => {
-  const { product } = route.params;
-
-  const [firstName, setFirstName] = useState(product.firstName);
-  const [lastName, setLastName] = useState(product.lastName);
-  const [password, setPassword] = useState(product.password);
-  const [phone, setPhone] = useState(product.phone);
-  const [email, setEmail] = useState(product.email);
-
-  const handleEditMember = () => {
-    // Burada üye düzenleme işlemi gerçekleştirilir
-    // Örneğin, API çağrısı yapılabilir veya yerel depolama kullanılabilir
-    console.log('Üye güncellendi:', { firstName, lastName, password, phone, email });
->>>>>>> origin/master
   };
 
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
       <Text style={styles.title}>Ürün Düzenle</Text>
       <TextInput
         style={styles.input}
@@ -66,43 +48,6 @@ const ProductsUpdateScreen = ({ route }) => {
         onChangeText={setPiece}
       />
       <TouchableOpacity style={styles.editButton} onPress={handleEditProduct}>
-=======
-      <Text style={styles.title}>Üye Düzenle</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Ad"
-        value={firstName}
-        onChangeText={setFirstName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Soyad"
-        value={lastName}
-        onChangeText={setLastName}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Şifre"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Telefon"
-        keyboardType="phone-pad"
-        value={phone}
-        onChangeText={setPhone}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="E-posta"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TouchableOpacity style={styles.editButton} onPress={handleEditMember}>
->>>>>>> origin/master
         <Text style={styles.buttonText}>Düzenle</Text>
       </TouchableOpacity>
     </View>
@@ -144,8 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-<<<<<<< HEAD
 export default ProductUpdateScreen;
-=======
-export default ProductsUpdateScreen;
->>>>>>> origin/master

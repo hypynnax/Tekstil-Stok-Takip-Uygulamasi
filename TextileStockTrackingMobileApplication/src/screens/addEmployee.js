@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-<<<<<<< HEAD
 import { database } from '../../firebase/firebase';
-=======
->>>>>>> origin/master
 
 
 const EmployeeAddScreen = () => {
@@ -12,10 +9,7 @@ const EmployeeAddScreen = () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
-<<<<<<< HEAD
   const [showMessage, setShowMessage] = useState('');
-=======
->>>>>>> origin/master
 
   const handleAddMember = () => {
     const userData = {
@@ -25,7 +19,6 @@ const EmployeeAddScreen = () => {
       phone: phone,
       email: email
     };
-<<<<<<< HEAD
 
     database.ref('employees').push(userData)
       .then(() => {
@@ -39,8 +32,6 @@ const EmployeeAddScreen = () => {
       .catch((error) => {
         setShowMessage('Error adding user: ', error);
       });
-=======
->>>>>>> origin/master
   };
 
   return (
@@ -82,14 +73,11 @@ const EmployeeAddScreen = () => {
       <TouchableOpacity style={styles.addButton} onPress={handleAddMember}>
         <Text style={styles.buttonText}>Ekle</Text>
       </TouchableOpacity>
-<<<<<<< HEAD
       {showMessage && (
         <View style={styles.alertContainer}>
           <Text style={styles.alertText}>{error}</Text>
         </View>
       )}
-=======
->>>>>>> origin/master
     </View>
   );
 };
@@ -127,7 +115,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 16,
   },
-<<<<<<< HEAD
   alertContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -141,8 +128,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     color: 'red',
   },
-=======
->>>>>>> origin/master
 });
 
 export default EmployeeAddScreen;

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "328287536522",
+    "firebase_url": "https://textilestocktrackingapp-default-rtdb.firebaseio.com",
     "project_id": "textilestocktrackingapp",
     "storage_bucket": "textilestocktrackingapp.appspot.com"
   },

@@ -1,5 +1,4 @@
 import * as React from 'react';
-<<<<<<< HEAD
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
 import { signUp } from '../../loginProcess'
 
@@ -18,21 +17,6 @@ const LoginScreen = ({ navigation }) => {
       if (response == 0) {
         setShowErrorMessage('That email address is invalid!');
       }
-=======
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-
-
-const LoginScreen = ({ navigation }) => {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [showErrorMessage, setShowErrorMessage] = React.useState(false);
-
-  const Login = () => {
-    if (true) {
-      navigation.navigate('Main');
-    } else {
-      setShowErrorMessage(true);
->>>>>>> origin/master
     }
   };
 
@@ -42,16 +26,10 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-<<<<<<< HEAD
           placeholder="Email"
           keyboardType="email-address"
           value={email}
           onChangeText={text => setEmail(text)}
-=======
-          placeholder="Username"
-          value={username}
-          onChangeText={text => setUsername(text)}
->>>>>>> origin/master
         />
       </View>
       <View style={styles.inputContainer}>
@@ -64,11 +42,7 @@ const LoginScreen = ({ navigation }) => {
         />
       </View>
       <View style={styles.forgotPasswordContainer}>
-<<<<<<< HEAD
         <TouchableOpacity onPress={() => navigation.navigate('Password Reset')}>
-=======
-        <TouchableOpacity onPress={() => navigation.navigate('Send Mail')}>
->>>>>>> origin/master
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
       </View>
@@ -83,11 +57,7 @@ const LoginScreen = ({ navigation }) => {
       </View>
       {showErrorMessage && (
         <View style={styles.alertContainer}>
-<<<<<<< HEAD
           <Text style={styles.alertText}>{showErrorMessage}</Text>
-=======
-          <Text style={styles.alertText}>This is a warning message!</Text>
->>>>>>> origin/master
         </View>
       )}
     </View>
