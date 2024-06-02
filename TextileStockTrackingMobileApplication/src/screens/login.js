@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
-import { signUp } from '../../loginProcess'
+import { login } from '../../loginProcess'
 
 
 const LoginScreen = ({ navigation }) => {
@@ -8,15 +8,14 @@ const LoginScreen = ({ navigation }) => {
   const [password, setPassword] = React.useState('');
   const [showErrorMessage, setShowErrorMessage] = React.useState('');
 
-  const Login = () => {
-    var response = signUp(email, password);
-    if (response) {
+  const Login = async () => {
+    const response = await login(email, password);
+    if (response.success) {
       navigation.navigate('Main');
       setShowErrorMessage('');
     } else {
-      if (response == 0) {
-        setShowErrorMessage('That email address is invalid!');
-      }
+      setShowErrorMessage(response.message);
+      setTimeout(() => setShowErrorMessage(''), 3000);
     }
   };
 

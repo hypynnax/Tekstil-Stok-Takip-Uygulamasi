@@ -1,37 +1,43 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { addDoc, collection } from 'firebase/firestore';
 import { database } from '../../firebase/firebase';
 
 
-const EmployeeAddScreen = () => {
+const ref = collection(database, "employees");
+
+const EmployeeAddScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState('');
   const [showMessage, setShowMessage] = useState('');
 
-  const handleAddMember = () => {
-    const userData = {
-      firstName: firstName,
-      lastName: lastName,
-      password: password,
-      phone: phone,
-      email: email
-    };
-
-    database.ref('employees').push(userData)
-      .then(() => {
-        setShowMessage('User added successfully');
-        setFirstName('');
-        setLastName('');
-        setPassword('');
-        setPhone('');
-        setEmail('');
-      })
-      .catch((error) => {
-        setShowMessage('Error adding user: ', error);
+  const handleAddMember = async () => {
+    if (!firstName || !lastName || !phone || !email) {
+      setShowErrorMessage("Lütfen tüm alanları doldurun");
+      setTimeout(() => setShowErrorMessage(''), 3000);
+      return;
+    }
+    
+    try {
+      await addDoc(ref, {
+        firstName: firstName,
+        lastName: lastName,
+        phone: phone,
+        email: email,
       });
+      setShowMessage("Üye başarıyla eklendi!");
+      setFirstName('');
+      setLastName('');
+      setPhone('');
+      setEmail('');
+      setTimeout(() => setShowMessage(''), 3000);
+    } catch (error) {
+      setShowErrorMessage(`Hata: ${error.message}`);
+      setTimeout(() => setShowErrorMessage(''), 3000);
+    }
   };
 
   return (
@@ -51,13 +57,6 @@ const EmployeeAddScreen = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Şifre"
-        secureTextEntry={true}
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TextInput
-        style={styles.input}
         placeholder="Telefon"
         keyboardType="phone-pad"
         value={phone}
@@ -74,8 +73,13 @@ const EmployeeAddScreen = () => {
         <Text style={styles.buttonText}>Ekle</Text>
       </TouchableOpacity>
       {showMessage && (
+        <View style={styles.successContainer}>
+          <Text style={styles.successText}>{showMessage}</Text>
+        </View>
+      )}
+      {showErrorMessage && (
         <View style={styles.alertContainer}>
-          <Text style={styles.alertText}>{error}</Text>
+          <Text style={styles.alertText}>{showErrorMessage}</Text>
         </View>
       )}
     </View>
@@ -127,6 +131,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginLeft: 10,
     color: 'red',
+  },
+  successContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#eeeeff',
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  successText: {
+    fontSize: 16,
+    marginLeft: 10,
+    color: 'green',
   },
 });
 

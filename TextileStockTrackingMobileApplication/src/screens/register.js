@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { signIn } from '../../loginProcess'
+import { register } from '../../loginProcess'
 
 const RegisterScreen = ({ navigation }) => {
   const [firstName, setFirstName] = useState('');
@@ -11,28 +11,26 @@ const RegisterScreen = ({ navigation }) => {
   const [address, setAddress] = useState('');
   const [showErrorMessage, setShowErrorMessage] = React.useState('');
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!email || !password || !firstName || !lastName || !phoneNumber || !address) {
       setShowErrorMessage('All fields are required.');
+      setTimeout(() => setShowErrorMessage(''), 3000);
       return;
     }
 
     if (password.length < 6) {
-      setError('Password should be at least 6 characters.');
+      setShowErrorMessage('Password should be at least 6 characters.');
+      setTimeout(() => setShowErrorMessage(''), 3000);
       return;
     }
 
-    var response = signIn(email, password);
-    if (response) {
+    const response = await register(email, password);
+    if (response.success) {
       navigation.navigate('Login');
       setShowErrorMessage('');
     } else {
-      if (response == 0) {
-        setShowErrorMessage('That email address is already in use!');
-      }
-      if (response == 1) {
-        setShowErrorMessage('That email address is invalid!');
-      }
+      setShowErrorMessage(response.message);
+      setTimeout(() => setShowErrorMessage(''), 3000);
     }
   };
 
@@ -122,6 +120,19 @@ const styles = StyleSheet.create({
   buttonText: {
     color: 'white',
     fontWeight: 'bold',
+  },
+  alertContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffeeee',
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  alertText: {
+    fontSize: 16,
+    marginLeft: 10,
+    color: 'red',
   },
 });
 

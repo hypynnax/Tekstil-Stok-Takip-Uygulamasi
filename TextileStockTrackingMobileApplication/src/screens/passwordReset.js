@@ -1,50 +1,50 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { auth } from '../../firebase/firebase';
+import { resetPassword } from '../../loginProcess'
 
-const PasswordResetScreen = () => {
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-
-  const reauthenticate = (currentPassword) => {
-    const user = auth.currentUser;
-    const credential = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
-    return user.reauthenticateWithCredential(credential);
-  };
-
-  const handleChangePassword = () => {
-    reauthenticate(currentPassword).then(() => {
-      const user = auth.currentUser;
-      user.updatePassword(newPassword).then(() => {
-        console.log('Password updated successfully');
-        // Şifre değiştirildiğinde ekranda bir mesaj göster veya kullanıcıyı başka bir ekrana yönlendir
-      }).catch((error) => {
-        console.error('Error updating password:', error);
-      });
-    }).catch((error) => {
-      console.error('Error reauthenticating:', error);
-    });
+const PasswordResetScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const handlePasswordReset = async () => {
+    const response = await resetPassword(email);
+    if (response.success) {
+      setSuccessMessage(response.message);
+      setErrorMessage('');
+      setTimeout(() => setSuccessMessage(''), 3000);
+      setEmail('');
+    } else {
+      setErrorMessage(response.message);
+      setSuccessMessage('');
+      setTimeout(() => setErrorMessage(''), 3000);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Şifre Değiştir</Text>
+      <Text style={styles.title}>Password Reset</Text>
       <TextInput
         style={styles.input}
-        placeholder="Mevcut Şifre"
-        secureTextEntry={true}
-        value={currentPassword}
-        onChangeText={setCurrentPassword}
+        placeholder="Email"
+        keyboardType="email-address"
+        value={email}
+        onChangeText={text => setEmail(text)}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Yeni Şifre"
-        secureTextEntry={true}
-        value={newPassword}
-        onChangeText={setNewPassword}
-      />
-      <TouchableOpacity style={styles.changeButton} onPress={handleChangePassword}>
-        <Text style={styles.buttonText}>Şifreyi Değiştir</Text>
+      <TouchableOpacity style={styles.button} onPress={handlePasswordReset}>
+        <Text style={styles.buttonText}>Reset Password</Text>
+      </TouchableOpacity>
+      {errorMessage ? (
+        <View style={styles.alertContainer}>
+          <Text style={styles.alertText}>{errorMessage}</Text>
+        </View>
+      ) : null}
+      {successMessage ? (
+        <View style={styles.alertContainer}>
+          <Text style={styles.successText}>{successMessage}</Text>
+        </View>
+      ) : null}
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <Text style={styles.backToLogin}>Back to Login</Text>
       </TouchableOpacity>
     </View>
   );
@@ -55,6 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#fff',
     paddingHorizontal: 20,
   },
   title: {
@@ -65,23 +66,48 @@ const styles = StyleSheet.create({
   input: {
     width: '100%',
     height: 40,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
+    borderRadius: 10,
     paddingHorizontal: 10,
+    backgroundColor: '#f0f0f0',
+    borderBottomWidth: 1,
+    borderBottomColor: '#777',
     marginBottom: 10,
   },
-  changeButton: {
-    backgroundColor: 'tomato',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
+  button: {
+    backgroundColor: '#007bff',
+    width: '100%',
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
     marginTop: 20,
   },
   buttonText: {
     color: '#fff',
-    fontWeight: 'bold',
     fontSize: 16,
+    fontWeight: 'bold',
+  },
+  alertContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#ffeeee',
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 20,
+  },
+  alertText: {
+    fontSize: 16,
+    marginLeft: 10,
+    color: 'red',
+  },
+  successText: {
+    fontSize: 16,
+    marginLeft: 10,
+    color: 'green',
+  },
+  backToLogin: {
+    color: '#007bff',
+    marginTop: 20,
   },
 });
 
